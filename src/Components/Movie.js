@@ -1,25 +1,17 @@
+import React, { PropTypes } from 'react';
 
-import React from 'react';
-import axios from 'axios';
+const Movie = (props) => {
 
-export default class Movie extends React.Component {
-  state = {
-    movieName: {},
-  };
+  return (
+    <div className="col-xs-4">
+    <img src={props.movie.image}  />
+    <h1>{props.movie.title} </h1>
+    <p>{props.movie.director}</p>
+    <p>{props.movie.country}</p>
 
-  componentDidMount() {
-    axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=722bb648').then(res => {
-      console.log(res)
-      this.setState({ movieName: res.data })
-    })
-  }
+    </div>
+  );
+};
 
-  render() {
-    return <ul> {this.state.movieName.Title}
 
-      
-        </ul>
-    
-  }
-
-}
+export default Movie;

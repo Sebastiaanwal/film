@@ -1,13 +1,14 @@
+import React, { PropTypes } from 'react';
 
-import React, { Component } from 'react';
-import Movie from '../Components/Movie';
+import SearchMovies from '../Components/SearchMovies.js'
+const App = (props) => {
+  return (
+    <div>
+    <SearchMovies />      
+    </div>
+  );
+};
 
-class App extends Component {
-  render() {
-    return (
-      <Movie />
-    )
-  }
-}
+
 
 export default App;

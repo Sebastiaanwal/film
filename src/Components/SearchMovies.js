@@ -1,27 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
+import Movie from './Movie';
 
 class SearchMovies extends Component {
 
 
   constructor(props) {
     super(props);
-    this.state = { lastMovie: {}, name: 'point break', API: process.env.REACT_APP_IMDB  };
+    this.state = { lastMovie: {}, name: 'point break' };
   }
 
   searchMovie = (name) => {
-    axios.get('http://www.omdbapi.com', {
+    axios.get('http://www.omdbapi.com/?apikey=722bb648', {
       params: {
          t: name,
-         apikey: API,
-         plot: 'short',
-        r:'json'}
+        r: 'json'}
       }
     ).then(response => {
         let data = { title: response.data.Title,
           director: response.data.Director,
           id: response.data.imdbID,
-          image: response.data.Poster
+          image: response.data.Poster,
+          country: response.data.Country
         };
       this.setState({ lastMovie: data});
     });
@@ -46,6 +46,7 @@ class SearchMovies extends Component {
                   <input className="btn-primary" type="submit" value="search"   onClick={() => this.searchMovie(this.state.name)}/>
                 </div>
             </div>
+            <Movie movie={this.state.lastMovie}  />
           </div>
         </div>
       );
